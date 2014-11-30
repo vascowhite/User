@@ -1,0 +1,19 @@
+{
+    "name": "vascowhite/user",
+    "description": "A user class",
+    "autoload": {
+        "psr-0": { "Vascowhite\\User": "src/" }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "dev-master"
+    },
+    "authors": [
+        {
+            "name": "Paul White",
+            "email": "paul@vascowhite.co.uk"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {}
+}
