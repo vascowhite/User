@@ -4,9 +4,7 @@
     "autoload": {
         "psr-0": { "Vascowhite\\User": "src/" }
     },
-    "require-dev": {
-        "phpunit/phpunit": "dev-master"
-    },
+
     "authors": [
         {
             "name": "Paul White",
@@ -15,5 +13,10 @@
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "require": {}
+    "require": {
+        "rdlowrey/arya": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "dev-master"
+    }
 }
