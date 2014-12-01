@@ -29,9 +29,53 @@
   */
 
 namespace Vascowhite\User;
+use Arya\Sessions\Session;
 
-
-class User 
+class User
 {
+    /** @var  Session */
+    private $session;
 
+    /**
+     * @param Session $session
+     */
+    public function __construct(Session $session)
+    {
+        $this->session = $session;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLoggedIn()
+    {
+        if($this->session->has('loggedIn') && $this->session->get('loggedIn')){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @param CredentialChecker $credentialChecker
+     * @param array $credentials
+     * @return bool
+     */
+    private function checkCredentials(CredentialChecker $credentialChecker, array $credentials)
+    {
+        return $credentialChecker->checkCredentials($credentials);
+    }
+
+    /**
+     * @param CredentialChecker $credentialChecker
+     * @param array $credentials
+     * @return bool
+     */
+    public function login(CredentialChecker $credentialChecker, array $credentials)
+    {
+        if($this->checkCredentials($credentialChecker, $credentials)){
+            $this->session->set('loggedIn', true);
+            return true;
+        }
+        return false;
+    }
 } 

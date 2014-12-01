@@ -33,10 +33,56 @@ use Vascowhite\User\User;
 
 class UserTest extends \PHPUnit_Framework_TestCase
 {
+    /** @var  \PHPUnit_Framework_MockObject_MockObject */
+    private $mockSession;
+
+    protected function setUp()
+    {
+        $this->mockSession = $this->getMockBuilder('Arya\Sessions\Session')->disableOriginalConstructor()->getMock();
+    }
+
     public function testCanInstantiate()
     {
-        $testUser = new User();
+        $testUser = new User($this->mockSession);
         $this->assertInstanceOf('Vascowhite\User\User', $testUser, 'Could not instantiate');
+    }
+
+    public function testCanTellIfUserNotLoggedIn()
+    {
+        $testUser = new User($this->mockSession);
+        $this->mockSession->expects($this->once())->method('has')->with('loggedIn')->willReturn(true);
+        $this->mockSession->expects($this->once())->method('get')->with('loggedIn')->willReturn(false);
+        $this->assertFalse($testUser->isLoggedIn(), 'Could not assert not logged in');
+    }
+
+    public function testCanTellIfUserLoggedIn()
+    {
+        $this->mockSession->expects($this->once())->method('has')->with('loggedIn')->willReturn(true);
+        $this->mockSession->expects($this->once())->method('get')->with('loggedIn')->willReturn(true);
+        $testUser = new User($this->mockSession);
+        $this->assertTrue($testUser->isLoggedIn(), 'Could not assert logged in');
+    }
+
+    public function testCanLogInUser()
+    {
+        $mockChecker = $this->getMockBuilder('Vascowhite\User\CredentialChecker')->getMock();
+        $mockChecker->expects($this->once())->method('checkCredentials')->willReturn(true);
+
+        $credentials = ['username', 'password'];
+
+        $testUser = new User($this->mockSession);
+        $this->assertTrue($testUser->login($mockChecker, $credentials), 'Could not login user');
+    }
+
+    public function testCanRejectUser()
+    {
+        $mockChecker = $this->getMockBuilder('Vascowhite\User\CredentialChecker')->getMock();
+        $mockChecker->expects($this->once())->method('checkCredentials')->willReturn(false);
+
+        $credentials = ['username', 'password'];
+
+        $testUser = new User($this->mockSession);
+        $this->assertFalse($testUser->login($mockChecker, $credentials), 'Could not login user');
     }
 }
  
