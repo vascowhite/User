@@ -47,11 +47,19 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Vascowhite\User\User', $testUser, 'Could not instantiate');
     }
 
-    public function testCanTellIfUserNotLoggedIn()
+    public function testCanTellIfUserNotLoggedInWhenKeyExists()
     {
         $testUser = new User($this->mockSession);
         $this->mockSession->expects($this->once())->method('has')->with('loggedIn')->willReturn(true);
         $this->mockSession->expects($this->once())->method('get')->with('loggedIn')->willReturn(false);
+        $this->assertFalse($testUser->isLoggedIn(), 'Could not assert not logged in');
+    }
+
+    public function testCanTellIfUserNotLoggedInWhenKeyDoesNotExist()
+    {
+        $testUser = new User($this->mockSession);
+        $this->mockSession->expects($this->once())->method('has')->with('loggedIn')->willReturn(false);
+        //$this->mockSession->expects($this->once())->method('get')->with('loggedIn')->willReturn(false);
         $this->assertFalse($testUser->isLoggedIn(), 'Could not assert not logged in');
     }
 
@@ -82,7 +90,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $credentials = ['username', 'password'];
 
         $testUser = new User($this->mockSession);
-        $this->assertFalse($testUser->login($mockChecker, $credentials), 'Could not login user');
+        $this->assertFalse($testUser->login($mockChecker, $credentials), 'Could not reject user');
     }
 }
  
