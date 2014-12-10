@@ -76,6 +76,7 @@ class User
             $this->session->set('loggedIn', true);
             return true;
         }
+        $this->session->set('loggedIn', false);
         return false;
     }
 } 
