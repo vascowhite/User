@@ -1,22 +1,28 @@
 {
     "name": "vascowhite/user",
-    "description": "A user class",
-    "autoload": {
-        "psr-0": { "Vascowhite\\User": "src/" }
+    "description": "A simple user authorisation class",
+    "keywords": [
+        "User",
+        "Authorisation"
+    ],
+    "support": {
+        "issues": "https://github.com/vascowhite/User/issues"
     },
-
+    "license": "GPL-3.0",
     "authors": [
         {
             "name": "Paul White",
-            "email": "paul@vascowhite.co.uk"
+            "email": "paul@vascowhite.co.uk",
+            "homepage": "http://www.vascowhite.co.uk",
+            "role": "developer"
         }
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "rdlowrey/arya": "dev-master"
+        "rdlowrey/arya": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "dev-master"
+        "phpunit/phpunit": "*"
     }
 }

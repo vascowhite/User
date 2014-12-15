@@ -59,7 +59,6 @@ class UserTest extends \PHPUnit_Framework_TestCase
     {
         $testUser = new User($this->mockSession);
         $this->mockSession->expects($this->once())->method('has')->with('loggedIn')->willReturn(false);
-        //$this->mockSession->expects($this->once())->method('get')->with('loggedIn')->willReturn(false);
         $this->assertFalse($testUser->isLoggedIn(), 'Could not assert not logged in');
     }
 
@@ -73,7 +72,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
     public function testCanLogInUser()
     {
-        $mockChecker = $this->getMockBuilder('Vascowhite\User\CredentialChecker')->getMock();
+        $mockChecker = $this->getMockBuilder('Vascowhite\User\ICredentialChecker')->getMock();
         $mockChecker->expects($this->once())->method('checkCredentials')->willReturn(true);
 
         $credentials = ['username', 'password'];
@@ -84,7 +83,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
     public function testCanRejectUser()
     {
-        $mockChecker = $this->getMockBuilder('Vascowhite\User\CredentialChecker')->getMock();
+        $mockChecker = $this->getMockBuilder('Vascowhite\User\ICredentialChecker')->getMock();
         $mockChecker->expects($this->once())->method('checkCredentials')->willReturn(false);
 
         $credentials = ['username', 'password'];
