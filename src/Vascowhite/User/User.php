@@ -56,21 +56,21 @@ class User
     }
 
     /**
-     * @param CredentialChecker|ICredentialChecker $credentialChecker
+     * @param CredentialChecker|CredentialChecker $credentialChecker
      * @param array $credentials
      * @return bool
      */
-    private function checkCredentials(ICredentialChecker $credentialChecker, array $credentials)
+    private function checkCredentials(CredentialChecker $credentialChecker, array $credentials)
     {
         return $credentialChecker->checkCredentials($credentials);
     }
 
     /**
-     * @param ICredentialChecker $credentialChecker
+     * @param CredentialChecker $credentialChecker
      * @param array $credentials
      * @return bool
      */
-    public function login(ICredentialChecker $credentialChecker, array $credentials)
+    public function login(CredentialChecker $credentialChecker, array $credentials)
     {
         if($this->checkCredentials($credentialChecker, $credentials)){
             $this->session->set('loggedIn', true);

@@ -72,7 +72,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
     public function testCanLogInUser()
     {
-        $mockChecker = $this->getMockBuilder('Vascowhite\User\ICredentialChecker')->getMock();
+        $mockChecker = $this->getMockBuilder('Vascowhite\User\CredentialChecker')->getMock();
         $mockChecker->expects($this->once())->method('checkCredentials')->willReturn(true);
 
         $credentials = ['username', 'password'];
@@ -83,7 +83,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
     public function testCanRejectUser()
     {
-        $mockChecker = $this->getMockBuilder('Vascowhite\User\ICredentialChecker')->getMock();
+        $mockChecker = $this->getMockBuilder('Vascowhite\User\CredentialChecker')->getMock();
         $mockChecker->expects($this->once())->method('checkCredentials')->willReturn(false);
 
         $credentials = ['username', 'password'];

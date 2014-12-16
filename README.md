@@ -2,7 +2,7 @@ User
 ===========
 
 A simple class for authorising users.
-Credentials are checked by passing any object that implements the `ICredentialChecker` interface.
+Credentials are checked by passing any object that implements the `CredentialChecker` interface.
 
 ##Installation
 
@@ -43,21 +43,21 @@ True if user is logged in, false otherwise.
 ####User::logIn()
 __Signature__
 ```php
-Bool logIn(ICredentialChecker, Array ['username', 'password'])
+Bool logIn(CredentialChecker, Array ['username', 'password'])
 ```
 
 __Arguments__
-`ICredentialChecker` an object implementing the `ICredentialChecker` interface.  
+`CredentialChecker` an object implementing the `CredentialChecker` interface.  
 `Array` A PHP array with user name at index 0 and user password at index 1.
 
 __Returns__
 True if user is successfully logged in, false otherwise.
 
 ---
-###ICredentialChecker
+###CredentialChecker
 An interface for checking credentials.
 
-####ICredentialChecker::checkCredentials()
+####CredentialChecker::checkCredentials()
 __Signature__
 ```php
 Bool checkCredentials(Array  ['username', 'password']);

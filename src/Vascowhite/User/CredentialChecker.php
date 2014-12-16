@@ -20,7 +20,7 @@
  * User: Paul White
  * Date: 01/12/2014
  * 
- * File: ICredentialChecker.php
+ * File: CredentialChecker.php
  * @package user
  */
  
@@ -31,7 +31,7 @@
 namespace Vascowhite\User;
 
 
-interface ICredentialChecker
+interface CredentialChecker
 {
     /**
      * Checks credentials and returns true if passed, otherwise returns false.
