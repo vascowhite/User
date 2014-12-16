@@ -56,7 +56,7 @@ class User
     }
 
     /**
-     * @param CredentialChecker|CredentialChecker $credentialChecker
+     * @param CredentialChecker $credentialChecker
      * @param array $credentials
      * @return bool
      */
